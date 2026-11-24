@@ -1,0 +1,10 @@
+[Unit]
+Description=Refresh firewall audit snapshot
+
+[Timer]
+OnBootSec=5s
+OnUnitInactiveSec=30s
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target

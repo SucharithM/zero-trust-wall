@@ -1,0 +1,9 @@
+{
+  "target": "Ubuntu Cyber Range VM",
+  "snapshot": "/var/lib/firewall-auditor/snapshot.json",
+  "policy": {
+    "22": {"name": "SSH", "sources": ["192.0.2.8/32"]},
+    "3306": {"name": "MySQL", "sources": ["198.51.100.14/32"]},
+    "443": {"name": "HTTPS", "sources": ["0.0.0.0/0", "::/0"]}
+  }
+}

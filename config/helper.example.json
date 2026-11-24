@@ -1,0 +1,12 @@
+{
+  "backend": "nftables",
+  "mode": "shared",
+  "protected_ports": [443, 8443],
+  "witnesses": {"required": "192.0.2.10", "comparison": "192.0.2.20"},
+  "ssh_key": "/etc/firewall-auditor/witness-key",
+  "known_hosts": "/etc/firewall-auditor/witness-known-hosts",
+  "rules": {
+    "18081": {"initial": "192.0.2.0/24", "approved": "192.0.2.10/32"},
+    "18082": {"initial": "192.0.2.0/24", "approved": "192.0.2.10/32"}
+  }
+}

@@ -221,3 +221,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Private deployment files
+/config/range.json
+*.pem
+*.key
+*.jsonl
+
+/.local/
+
+/config/helper.json
+/config/witness.json
+/config/accounts.json

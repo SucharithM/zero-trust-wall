@@ -1,0 +1,16 @@
+[Unit]
+Description=Collect read-only nftables evidence
+
+[Service]
+Type=oneshot
+Group=firewall-auditor
+ExecStart=/usr/bin/python3 /opt/firewall-auditor/deploy/collect.py
+StateDirectory=firewall-auditor
+StateDirectoryMode=0750
+UMask=0027
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_NET_ADMIN
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+RestrictAddressFamilies=AF_NETLINK AF_UNIX

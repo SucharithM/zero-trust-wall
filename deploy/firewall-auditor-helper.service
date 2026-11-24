@@ -1,0 +1,27 @@
+[Unit]
+Description=Scoped firewall change helper
+After=network-online.target nftables.service ufw.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Group=firewall-auditor
+WorkingDirectory=/opt/firewall-auditor
+ExecStart=/usr/bin/python3 -m firewall_auditor.helper --config /etc/firewall-auditor/helper.json
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=firewall-auditor-helper
+RuntimeDirectoryMode=0750
+StateDirectory=firewall-auditor-helper
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_NET_ADMIN
+ProtectSystem=strict
+# UFW creates and removes its lock under /run.
+ReadWritePaths=-/etc/ufw -/lib/ufw /run
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

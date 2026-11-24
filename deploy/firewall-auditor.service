@@ -1,0 +1,25 @@
+[Unit]
+Description=Read-only firewall auditor over HTTPS
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=firewall-auditor
+Group=firewall-auditor
+WorkingDirectory=/opt/firewall-auditor
+EnvironmentFile=/etc/firewall-auditor/environment
+ExecStart=/usr/bin/python3 -m firewall_auditor --config /etc/firewall-auditor/range.json --host ${AUDIT_BIND} --port 8443 --cert /etc/firewall-auditor/cert.pem --key /etc/firewall-auditor/key.pem --log /var/log/firewall-auditor/audit.jsonl
+LogsDirectory=firewall-auditor
+LogsDirectoryMode=0750
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+CapabilityBoundingSet=
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
